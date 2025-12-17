@@ -1,4 +1,4 @@
-FROM openjdk:21-slim-buster as build
+FROM eclipse-temurin:21-jdk-alpine as build
 
 COPY .mvn .mvn
 COPY mvnw .
@@ -10,7 +10,7 @@ COPY src src
 
 RUN ./mvnw -B package                                        
 
-FROM openjdk:21-slim-buster
+FROM eclipse-temurin:21-jre-alpine
 
 COPY --from=build target/customer-management-backend-0.0.2-SNAPSHOT.jar .
 
